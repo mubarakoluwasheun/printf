@@ -13,7 +13,7 @@ int find_specifier(char c)
 
 	for (i = 0; specifiers[i].c != 0; i++)
 	{
-		if (specifiers[i].c == c);
+		if (specifiers[i].c == c)
 			 return (i);
 	}
 	return (-1);

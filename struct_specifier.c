@@ -1,11 +1,5 @@
 #include  "main.h"
 
-typedef struct specifier_s
-{
-	char c;
-	int (*f)(va_list);
-} specifier_t;
-
 specifier_t specifiers[] = {
 	{'c', print_char},
 	{'s', print_string},

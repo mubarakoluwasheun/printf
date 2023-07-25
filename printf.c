@@ -1,7 +1,8 @@
 #include "main.h"
 
 /**
- * _printf - produces output according to a format
+ * _printf - custom implementation of the printf
+ * function
  * @format: character string composed of zero or
  * more directives
  *
@@ -11,7 +12,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int count = 0;
+	buffer_t buffer = {{0}, 0};
 	int i, j;
 
 	va_start(args, format);
@@ -20,16 +21,20 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
+			if (format[i] == '\0')
+			{
+				va_end(args);
+				return (-1);
+			}
 			j = find_specifier(format[i]);
 			if (j >= 0)
-				count += specifiers[j].f(args);
+				specifiers[j].f(args, &buffer);
 		}
 		else
-		{
-			write(1, &format[i], 1);
-			count++;
-		}
+			buffer_add_char(&buffer, format[i]);
 	}
+	buffer_flush(&buffer);
+
 	va_end(args);
-	return (count);
+	return (buffer.index);
 }

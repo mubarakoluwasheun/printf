@@ -20,6 +20,22 @@ typedef struct specifier_s
 
 extern specifier_t specifiers[];
 
+/**
+ * struct buffer_s - Structure to hold the buffer
+ * and its current index
+ * @data: The buffer data
+ * @index: The current index in the buffer
+ */
+typedef struct buffer_s
+{
+	char data[BUFFER_SIZE];
+	int index;
+} buffer_t;
+
+void buffer_add_char(buffer_t *buffer, char c);
+void buffer_flush(buffer_t *buffer);
+int _printf(const char *format, ...);
+
 /* Function prototypes */
 int _printf(const char *format, ...);
 int find_specifier(char c);

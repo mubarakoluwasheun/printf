@@ -1,35 +1,24 @@
 #include "main.h"
 
 /**
- * _printf - produces output according to a format
- * @format: character string composed of zero or
- * more directives
+ * _printf - prints formatted characters
+ * @format: the character string to be printed
  *
- * Return: the number of characters printed
- * (excluding the null byte)
+ * Return: number of characters printed, -1 if failed
  */
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int count = 0;
-	int i, j;
+	va_list ap;
+	char *str;
 
-	va_start(args, format);
-	for (i = 0; format[i] != '\0'; i++)
-	{
-		if (format[i] == '%')
-		{
-			i++;
-			j = find_specifier(format[i]);
-			if (j >= 0)
-				count += specifiers[j].f(args);
-		}
-		else
-		{
-			write(1, &format[i], 1);
-			count++;
-		}
-	}
-	va_end(args);
-	return (count);
+	if (format == NULL)
+		return (-1);
+
+	va_start(ap, format);
+	str = parse_input(format, ap);
+	va_end(ap);
+	if (str == NULL)
+		return (-1);
+
+	return (_puts(str));
 }

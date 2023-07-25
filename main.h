@@ -1,41 +1,51 @@
 #ifndef PRINTF
 #define PRINTF
 
-#include <stdarg.h>
+#include <stdlib.h>
 #include <unistd.h>
-#include <limits.h>
+#include <stddef.h>
+#include <stdarg.h>
 
 /**
- * struct specifier_s - a conversion specifier
+ * struct mod_s - structure for modifiers
+ * @plus: + flag
+ * @hash: # flag
+ * @zero: 0 flag
+ * @minus: - flag
+ * @space: ' ' flag
+ * @width: width modifier
+ * @prec: precision modifier
+ * @len: length modifier
  *
- * @c: the character of the conversion specifier
- * @f: a pointer to a function that takes in va_list
- * objects as an argument and returns an int
  */
-
-typedef struct specifier_s
+typedef struct mod_s
 {
-	char c;
-	int (*f)(va_list);
-} specifier_t;
+	int plus;
+	int hash;
+	int zero;
+	int minus;
+	int space;
+	int width;
+	int prec;
+	char len;
+} mod_t;
 
-specifier_t specifiers[] = {
-	{'c', print_char},
-	{'s', print_string},
-	{'d', print_int},
-	{'i', print_int},
-	{'%', print_percent},
-	{0, NULL}
-};
+/**
+ * struct spec_s - structure for specifier handlers
+ * @spec: the specifier character
+ * @parser: the specifier handler
+ *
+ */
+typedef struct spec_s
+{
+	char spec;
+	char *(*parser)(mod_t *, va_list);
+} spec_t;
 
-extern specifier_t specifiers[];
-
-/* Function prototypes */
 int _printf(const char *format, ...);
-int find_specifier(char c);
-int print_char(va_list args);
-int print_string(va_list args);
-int print_int(va_list args);
-int print_percent(va_list args);
 
-#endif
+/* string_util */
+int _putchar(char c);
+int _puts(const char *str);
+
+#endif /* PRINTF */

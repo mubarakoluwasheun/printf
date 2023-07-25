@@ -6,5 +6,6 @@ specifier_t specifiers[] = {
 	{'d', print_int},
 	{'i', print_int},
 	{'%', print_percent},
+	{'b', print_binary},
 	{0, NULL}
 };

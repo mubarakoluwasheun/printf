@@ -114,3 +114,5 @@ int print_hex_upper(va_list args)
         write(1, &buffer[i], 1);
         count++;
     }
+    return (count);
+}

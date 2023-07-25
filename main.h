@@ -5,11 +5,28 @@
 #include <unistd.h>
 #include <limits.h>
 
+/**
+ * struct specifier_s - a conversion specifier
+ *
+ * @c: the character of the conversion specifier
+ * @f: a pointer to a function that takes in va_list
+ * objects as an argument and returns an int
+ */
+
 typedef struct specifier_s
 {
-    char c;
-    int (*f)(va_list);
+	char c;
+	int (*f)(va_list);
 } specifier_t;
+
+specifier_t specifiers[] = {
+	{'c', print_char},
+	{'s', print_string},
+	{'d', print_int},
+	{'i', print_int},
+	{'%', print_percent},
+	{0, NULL}
+};
 
 extern specifier_t specifiers[];
 

@@ -2,6 +2,7 @@
 
 /**
  * print_percent - prints a percent character
+ * @args: list(void) of arguments
  *
  * Return: the number of characters printed
  */
@@ -22,6 +23,7 @@ int print_percent(va_list args)
 int print_char(va_list args)
 {
 	char c = va_arg(args, int);
+
 	write(1, &c, 1);
 	return (1);
 }

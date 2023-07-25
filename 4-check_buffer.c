@@ -3,24 +3,12 @@
 # define BUFFER_SIZE 1024
 
 /**
- * struct buffer_s - Structure to hold the buffer and
- * its current index
- * @data: The buffer data
- * @index: The current index in the buffer
- */
-typedef struct buffer_s
-{
-	char data[BUFFER_SIZE];
-	int index;
-} buffer_t;
-
-/**
  * buffer_add_char - Function to add a character
  * to the buffer
  * @buffer: Pointer to the buffer structure
  * @c: The character to add
  */
-void buffer _add_char(buffer_t *buffer, char c)
+void buffer_add_char(buffer_t *buffer, char c)
 {
 	buffer->data[buffer->index++] = c;
 

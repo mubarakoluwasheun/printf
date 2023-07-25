@@ -23,6 +23,11 @@ int print_int(va_list args)
 	{
 		write(1, "-", 1);
 		count++;
+		if (n == INT_MIN)
+		{
+			write(1, "2147483648", 10);
+			return (count + 10);
+		}
 		n = -n;
 	}
 

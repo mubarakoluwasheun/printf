@@ -1,1 +1,1 @@
-A two-people team project to write the printf function.
+A printf project

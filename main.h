@@ -1,51 +1,39 @@
 #ifndef PRINTF
 #define PRINTF
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <stddef.h>
 #include <stdarg.h>
+#include <unistd.h>
+#include <limits.h>
 
-/**
- * struct mod_s - structure for modifiers
- * @plus: + flag
- * @hash: # flag
- * @zero: 0 flag
- * @minus: - flag
- * @space: ' ' flag
- * @width: width modifier
- * @prec: precision modifier
- * @len: length modifier
- *
- */
-typedef struct mod_s
-{
-	int plus;
-	int hash;
-	int zero;
-	int minus;
-	int space;
-	int width;
-	int prec;
-	char len;
-} mod_t;
-
-/**
- * struct spec_s - structure for specifier handlers
- * @spec: the specifier character
- * @parser: the specifier handler
- *
- */
-typedef struct spec_s
-{
-	char spec;
-	char *(*parser)(mod_t *, va_list);
-} spec_t;
-
+/* Function prototypes */
 int _printf(const char *format, ...);
+int find_specifier(char c);
+int print_char(va_list args);
+int print_string(va_list args);
+int print_int(va_list args);
+int print_percent(va_list args);
 
-/* string_util */
-int _putchar(char c);
-int _puts(const char *str);
+/**
+ * struct specifier_s - a conversion specifier
+ *
+ * @c: the character of the conversion specifier
+ * @f: a pointer to a function that takes in va_list
+ * objects as an argument and returns an int
+ */
 
-#endif /* PRINTF */
+typedef struct specifier_s
+{
+	char c;
+	int (*f)(va_list);
+} specifier_t;
+
+specifier_t specifiers[] = {
+	{'c', print_char},
+	{'s', print_string},
+	{'d', print_int},
+	{'i', print_int},
+	{'%', print_percent},
+	{0, NULL}
+};
+
+#endif

@@ -1,5 +1,7 @@
 #include "main.h"
 
+#define BUFFER_SIZE 1024
+
 /**
  * _printf - custom implementation of the printf
  * function
@@ -12,7 +14,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	buffer_t buffer = {{0}, 0};
+	int count = 0;
 	int i, j;
 
 	va_start(args, format);
@@ -28,13 +30,14 @@ int _printf(const char *format, ...)
 			}
 			j = find_specifier(format[i]);
 			if (j >= 0)
-				specifiers[j].f(args, &buffer);
+				count += specifiers[j].f(args);
 		}
 		else
-			buffer_add_char(&buffer, format[i]);
+		{
+			write(1, &format[i], 1);
+			count++;
+		}
 	}
-	buffer_flush(&buffer);
-
 	va_end(args);
-	return (buffer.index);
+	return (count);
 }

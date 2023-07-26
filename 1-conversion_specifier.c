@@ -24,9 +24,10 @@ int print_char(va_list args)
 {
 	char c = va_arg(args, int);
 
-	if (c == '\0')
-		write(1, "(null)", 1);
-	write(1, &c, 1);
+	if (c != '\0')
+	{
+		write(1, &c, 1);
+	}
 	return (1);
 }
 

@@ -34,6 +34,12 @@ int _printf(const char *format, ...)
 			j = find_specifier(format[i]);
 			if (j >= 0)
 				count += specifiers[j].f(args);
+			else
+			{
+				write(1, &format[i - 1], 1);
+				write(1, &format[i], 1);
+				count += 2;
+			}
 		}
 		else
 		{

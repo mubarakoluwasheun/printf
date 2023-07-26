@@ -25,7 +25,7 @@ int print_char(va_list args)
 	char c = va_arg(args, int);
 
 	if (c == '\0')
-		c == "(null)";
+		write(1, "(nul)l", 1);
 	write(1, &c, 1);
 	return (1);
 }

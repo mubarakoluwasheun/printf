@@ -28,10 +28,11 @@ int print_custom_string(va_list args)
     char *str = va_arg(args, char *);
     int count = 0;
     char buffer[5];
+    int i;
 
-    for (int i = 0; str[i] != '\0'; i++)
+    for (i = 0; str[i] != '\0'; i++)
     {
-        if (str[i] > 0 && str[i] < 32 || str[i] >= 127)
+        if ((str[i] > 0 && str[i] < 32) || (str[i] >= 127))
         {
             format_non_printable_char(buffer, str[i]);
             write(1, buffer, 4);

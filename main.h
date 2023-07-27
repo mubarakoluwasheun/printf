@@ -32,5 +32,7 @@ int print_unsigned(va_list args);
 int print_octal(va_list args);
 int print_hex_lower(va_list args);
 int print_hex_upper(va_list args);
+int print_custom_string(va_list args);
+void format_non_printable_char(char *buffer, char c);
 
 #endif

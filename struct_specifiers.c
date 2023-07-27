@@ -11,5 +11,6 @@ specifier_t specifiers[] = {
 	{'o', print_octal},
 	{'x', print_hex_lower},
 	{'X', print_hex_upper},
+	{'S', print_custom_string},
 	{0, NULL}
 };

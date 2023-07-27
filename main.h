@@ -4,6 +4,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 #include <limits.h>
+#include <stdlib.h>
 
 /**
  * struct specifier_s - a conversion specifier
@@ -34,5 +35,6 @@ int print_hex_lower(va_list args);
 int print_hex_upper(va_list args);
 int print_custom_string(va_list args);
 void format_non_printable_char(char *buffer, char c);
-
+int print_pointer(va_list args);
+int format_pointer(void *ptr, char *str);
 #endif

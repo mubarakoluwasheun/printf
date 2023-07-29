@@ -37,4 +37,5 @@ int print_custom_string(va_list args);
 void format_non_printable_char(char *buffer, char c);
 int print_pointer(va_list args);
 int format_pointer(void *ptr, char *str);
+
 #endif
